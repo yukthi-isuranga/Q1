@@ -121,3 +121,10 @@ docker ps -a
 docker inspect container_name
 docker stop container_name
 docker logs container_name
+
+
+//Docker container commands
+docker container logs container_id
+docker container kill container_id
+docker container rm container_id
+docker container run container_id
