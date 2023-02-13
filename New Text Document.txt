@@ -105,3 +105,17 @@ docker network create -d bridge yukthi
 docker network create --subnet=182.168.8.1/16 xxx 
 
 docker-compose up
+
+
+
+
+
+docker info
+docker version
+docker help
+docker images
+docker ps
+docker ps -a
+docker inspect container_name
+docker stop container_name
+docker logs container_name
