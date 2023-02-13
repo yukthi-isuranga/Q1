@@ -54,7 +54,7 @@ EXPOSE 80:80
 
 
 
-sudo docker -t exam:latest .
+sudo docker build -t exam:latest .
 
 sudo docker run -p 80:80 exam
 
