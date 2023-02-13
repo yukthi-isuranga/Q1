@@ -1,0 +1,107 @@
+docker-compose.yml
+
+version: '3'
+services:
+  wordpress:
+    image: wordpress:4.9.8
+    container_name: wordpress
+    restart: always
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wpdb
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+    ports:
+      - 8080:80
+      - 443:443
+  db:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 3333:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORT: password
+
+
+
+
+Dockerfile
+
+FROM ubuntu
+MAINTAINER southeastern_university
+RUN apt-get update
+RUN apt-get install -y nginx
+ADD index.html /var/www/html/
+COPY . /var/www/html/
+ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
+EXPOSE 80:80
+
+
+
+
+
+Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+
+ sudo apt-get update
+ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+
+Add Docker’s official GPG key:
+
+ sudo mkdir -p /etc/apt/keyrings
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+
+Update the apt package index:
+
+ sudo apt-get update
+
+
+Install Docker Engine, containerd, and Docker Compose.
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+
+Verify that the Docker Engine installation is successful by running the hello-world image:
+
+ sudo docker run hello-world
+
+
+
+
+
+
+
+
+docker images
+
+docker stop xxxxx
+
+docker rm $(docker ps -aq)
+
+docker run -it nginx bin/bash
+
+server docker restart
+
+docker network ls
+docker network create -d bridge yukthi
+
+docker network create --subnet=182.168.8.1/16 xxx 
+
+docker-compose up
