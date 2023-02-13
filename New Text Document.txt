@@ -37,6 +37,8 @@ services:
 
 
 
+docker-compose up
+
 
 Dockerfile
 
