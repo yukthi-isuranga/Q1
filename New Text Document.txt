@@ -127,3 +127,23 @@ docker container logs container_id
 docker container kill container_id
 docker container rm container_id
 docker container run container_id
+
+
+//flask app  app.py
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def counter():
+return '0'
+
+//requirements.txt
+Flask
+
+//Dockerfile
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+CMD flask run --host=0.0.0.0 --port=5000
+
+//run
+docker build image -t xxx .
+docker run -p 5000:5000 <imageName>
